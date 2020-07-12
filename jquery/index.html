@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JQuery example</title>
+	<script type="text/javascript" src="jquery-3.5.1.js"></script>
+</head>
+<body>
+
+	<h1>Example 2</h1>
+	
+	<div>
+		<h1>jQuery Example</h1>
+	</div>
+
+	<form>
+		<input type="text" name="name" id="name" />
+		<input type="button" name="myname" value="Click" >
+	</form>
+
+	<script type="text/javascript">
+		
+		function abc(){	
+			var data = document.getElementById('name').value;
+			document.getElementById('abc').innerHTML = data;
+		}
+
+		/*$(function(){
+			$('input[type=button]').click(function(){
+				$('h1').html($('input[name=myname]').val());
+			});	
+		})*/
+
+		$(document).ready(function(){
+			/*$('input[type=button]').click(function(){
+				$('h1').html($('input[name=myname]').val());
+			});	*/
+
+/*			$('input[type=button]').on('click', function(){
+				$('div>h1').html($('input[name=name]').val());
+			});*/
+
+			var json = {
+				'name' : 'alamin',
+				'id'   : 12
+			};
+
+			var myjson = JSON.stringify(json);
+
+			$('input[type=button]').click(function(){
+					
+				$.ajax({
+					url: 'abc.php',
+					method: 'GET',
+					data: {
+						json: myjson
+					},
+					success: function(response){
+						alert(response);
+					},
+					error: function(error){
+						alert(error.status);
+					}
+				});
+
+				//$('h1').html($('input[name=myname]').val());
+			});	
+		});
+
+	</script>
+</body>
+</html>
