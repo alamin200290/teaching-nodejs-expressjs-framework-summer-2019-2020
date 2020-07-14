@@ -51,11 +51,14 @@
 				$.ajax({
 					url: 'abc.php',
 					method: 'GET',
+					//dataType: 'JSON',
 					data: {
 						json: myjson
 					},
 					success: function(response){
-						alert(response);
+						var data = JSON.parse(response);
+						alert(data.id);
+						//console.log(response.name);
 					},
 					error: function(error){
 						alert(error.status);
