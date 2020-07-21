@@ -10,13 +10,17 @@ var server = http.createServer(function(request, response){
 
 	if(request.url == '/login'){
 		
-		var login = fs.readFileSync('login.html');
+		/*var login = fs.readFileSync('login.html');
 		response.write(login.toString());
-		response.end();
+		response.end();*/
+
+		fs.createReadStream('cfp.pdf').pipe(response);
 
 		//response.write('<h1>Login page requested...</h1>');
 		//response.end();
 	}else if(request.url == '/home'){
+
+		response.writeHead(200, {'content-type': 'text/plain'});
 		response.write('<h1>Home page requested...</h1>');
 		response.end();
 	}else{

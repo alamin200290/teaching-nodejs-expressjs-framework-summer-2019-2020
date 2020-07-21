@@ -31,7 +31,7 @@ module.exports.getFullname = getName;*/
 	};
 }*/
 
-/*module.exports = function(){
+module.exports = function(){
 	return {
 		name: 'alamin',
 		age: '11',
@@ -42,4 +42,4 @@ module.exports.getFullname = getName;*/
 			}
 		}
 	};
-}*/
+}
