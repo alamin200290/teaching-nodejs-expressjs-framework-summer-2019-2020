@@ -6,8 +6,28 @@
 
 </head>
 <body>
-	<h1>Welcome Home!</h1> <a href="/logout">Logout</a>
-	<!-- <img src="abc/abc.jpg"> -->
+	<h1>Welcome Home! <%= uname %></h1> <a href="/logout">Logout</a>
+	
+	<h3>User List</h3>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>USERNAME</th>
+			<th>PASSWORD</th>		
+			<th>TYPE</th>
+			<th>Action</th>
+		</tr>
+
+		<% for(var i=0; i < userList.length; i++){ %>
+		<tr>
+			<td><%= userList[i].id %></td>
+			<td><%= userList[i].username %></td>
+			<td><%= userList[i].password %></td>
+			<td><%= userList[i].type %></td>
+			<td><a href="/edit">EDIT</a> | <a href="/delete"> DELETE </a></td>
+		</tr>
+		<% } %>
+	</table>
 	
 </body>
 </html>
