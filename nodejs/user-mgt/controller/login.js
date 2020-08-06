@@ -1,6 +1,6 @@
-var express = require('express');
-var db 		= require.main.require('./models/db');
-var router 	= express.Router();
+var express 	= require('express');
+var userModel 	= require.main.require('./models/user');
+var router 		= express.Router();
 
 router.get('/', function(req, res){
 	res.render('login/index');
@@ -8,10 +8,14 @@ router.get('/', function(req, res){
 
 router.post('/', function(req, res){
 
-	var sql = "select * from user where username='"+req.body.uname+"' and password='"+req.body.password+"'";
-	db.getResults(sql, function(result){
-		if(result.length > 0){
-			req.session.username = result[0].username;
+	var user = {
+		uname: req.body.uname,
+		password: req.body.password
+	};
+
+	userModel.validate(user, function(status){
+		if(status){
+			req.session.username = user.uname;
 			res.redirect('/home');
 		}else{
 			res.send('invalid username/password');
